@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <button aria-label="home-button" mat-icon-button routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>KLM</span>
+  <span class="spacer"></span>
+  <button mat-raised-button (click)="openDialog()" aria-label="New Holiday">New Holiday</button>
+</mat-toolbar>
+<app-holidays [newHoliday]="holiday" ></app-holidays>

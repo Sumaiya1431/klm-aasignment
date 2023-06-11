@@ -1,0 +1,50 @@
+<h1 mat-dialog-title> New Holiday </h1>
+<mat-divider></mat-divider>
+<mat-dialog-content [formGroup]="form">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Holiday Label</mat-label>
+      <input formControlName="holidayLabel" matInput placeholder="Placeholder">
+      <mat-error *ngIf="this.form.get('holidayLabel')?.invalid">{{getErrorMessage("holidayLabel")}}</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Employee ID</mat-label>
+      <mat-select formControlName="employeeId">
+        <mat-option *ngFor="let employeeId of employeeIds" [value]="employeeId">{{employeeId}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="this.form.get('employeeId')?.invalid">{{getErrorMessage("employeeId")}}</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label appearance="outline">Start Date</mat-label>
+      <input [ngxMatDatetimePicker]="picker" formControlName="startOfHoliday" matInput placeholder="Choose a date">
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker [showSpinners]="true">
+        <ng-template>
+          <span>OK</span>
+        </ng-template>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label appearance="outline">End Date</mat-label>
+      <input [ngxMatDatetimePicker]="picker1" formControlName="endOfHoliday" matInput placeholder="Choose a date">
+      <mat-datepicker-toggle [for]="picker1" matSuffix></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker1 [showSpinners]="true">
+        <ng-template>
+          <span>OK</span>
+        </ng-template>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+  </p>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="save(Status.SCHEDULED)" aria-label="Schedule Save" mat-button>Save</button>
+  <button (click)="save(Status.DRAFT)" aria-label="Draft Save" mat-button>Save As Draft</button>
+  <button (click)="close()" mat-button>Close</button>
+</mat-dialog-actions>

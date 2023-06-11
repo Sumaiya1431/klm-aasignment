@@ -1,0 +1,73 @@
+<div class="search-row">
+  <mat-form-field>
+    <mat-label>Search For Employee</mat-label>
+    <mat-select [formControl]="employeeSearch" multiple>
+      <mat-select-trigger>
+        {{employeeSearch.value?.[0] || ''}}
+        <span *ngIf="(employeeSearch.value?.length || 0) > 1" class="example-additional-selection">
+        (+{{(employeeSearch.value?.length || 0) - 1}} {{employeeSearch.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let employeeId of employeeIds" [value]="employeeId">{{employeeId}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchEmployee()">Search</button>
+  <button mat-raised-button color="primary" (click)="refresh()">Refresh</button>
+</div>
+
+
+<div class="container mat-elevation-z8">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="desc" #empTbSort="matSort">
+
+          <ng-container matColumnDef="label">
+            <th mat-header-cell *matHeaderCellDef> Label </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayLabel}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="employeeId">
+            <th mat-header-cell *matHeaderCellDef> Employee Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startOfHoliday">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Start Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.startOfHoliday | date}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="endOfHoliday">
+            <th mat-header-cell *matHeaderCellDef> End Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.endOfHoliday | date}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="menu" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon-Button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openDialog(element)" aria-label="Edit Holiday">
+                  <span>Edit Holiday</span>
+                </button>
+                <button mat-menu-item (click)="deleteHoliday(element)" aria-label="Delete Holiday">
+                  <span>Cancel Holiday</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="10" aria-label="Select Page"></mat-paginator>
+</div>
+
