@@ -1,9 +1,0 @@
-com/airfranceklm/fasttrack/assignment/resources/ErrorResponse.class
-com/airfranceklm/fasttrack/assignment/resources/Holiday.class
-com/airfranceklm/fasttrack/assignment/controller/HolidaysApi.class
-com/airfranceklm/fasttrack/assignment/repo/HolidaysRepo.class
-com/airfranceklm/fasttrack/assignment/resources/EmployeeDetail.class
-com/airfranceklm/fasttrack/assignment/services/HolidaysService.class
-com/airfranceklm/fasttrack/assignment/Application.class
-com/airfranceklm/fasttrack/assignment/repo/EmployeesRepo.class
-com/airfranceklm/fasttrack/assignment/resources/Status.class
