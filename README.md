@@ -69,8 +69,22 @@ Edit the apiBaseUrl in file src\environments\environment.ts
 In frontend folder run the command "ng serve"
 
 # Mock Data For Employee
+Insert below commands in DB.
 
+insert into employee_detail values ('klm123451','test1');
+insert into employee_detail values ('klm123452','test2');
+insert into employee_detail values ('klm123453','test3');
+insert into employee_detail values ('klm123454','test4');
+insert into employee_detail values ('klm123455','test5');
+insert into employee_detail values ('klm123456','test6');
+insert into employee_detail values ('klm123457','test7');
+insert into employee_detail values ('klm123458','test8');
+insert into employee_detail values ('klm123459','test9');
+insert into employee_detail values ('klm123450','test0');
 
 # Future Improvements
+
+1. In current implementation, any crew member can perform CRUD operations on any crew members holiday. Improvement would be to create authentication for crew member and that crew member can perform CRUD only on his holidays.
+2. Improve Error handling for Backend API. 
 
 
